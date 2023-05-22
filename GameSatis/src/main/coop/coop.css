@@ -1,0 +1,147 @@
+:root {
+    background-color: #333;
+  }
+  
+  body {
+    padding-block: 5vh;
+    margin: 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    line-height: 1.5;
+    color: white;
+    
+  }
+  
+  h1 {
+    margin-top: 0;
+  }
+  
+  #description {
+    font-size: 1.2em;
+    font-style: italic;
+  }
+  
+  #survey-form {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5em;
+  
+    width: min(40em, 70vw);
+    padding: 1.5em 2em;
+    border-radius: 1.5em;
+    margin: 0 auto;
+  
+    color: white;
+    background-color: var(--dark-purple);
+  }
+  
+  #survey-form > label {
+    padding-left: 0.5em;
+  
+    text-align: left;
+    font-size: 1.2em;
+  }
+  
+  #survey-form > * + :is(label, fieldset, button) {
+    margin-top: 0.5em;
+  }
+  
+  #survey-form :where(input, select, textarea) {
+    padding: 0.5rem 1rem;
+    border: 3px var(--dark-purple) solid;
+    border-radius: 0.5em;
+  
+    font-size: 1.1em;
+  }
+  
+  #survey-form :where(input, select, textarea):focus {
+    border-color: var(--light-purple);
+    outline: none;
+  }
+  
+  #survey-form input[name="age"] {
+    width: 2em;
+  }
+  
+  
+  /* Disable number input arrows */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .ar:hover{
+    cursor: pointer;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    text-align: right;
+  }
+  
+  select :first-child {
+    /* Hiding the placeholder */
+    display: none;
+  }
+  
+  fieldset legend {
+    text-align: left;
+  }
+  
+  fieldset input {
+    margin: 0;
+  }
+  
+  fieldset[name="langs"] div {
+    display: grid;
+    grid-template-columns: repeat(4, auto 1fr);
+    gap: 0.5em;
+    align-items: center;
+  }
+  
+  fieldset[name="langs"] label {
+    text-align: left;
+  }
+  
+  fieldset[name="recommend"] div {
+    display: flex;
+    align-items: center;
+    padding-inline: 1em;
+  }
+  
+  fieldset[name="recommend"] label {
+    margin-left: 0.5em;
+    text-transform: capitalize;
+  }
+  
+  fieldset input:not(:first-child) {
+    margin-left: auto;
+  }
+  
+  textarea {
+    resize: none;
+    overflow-y: auto;
+  }
+  
+  #survey-form button {
+    align-self: flex-end;
+  
+    width: max-content;
+    padding: 0.6em 1em;
+    border: none;
+    border-radius: 0.5em;
+    box-shadow: 0 0 2px 1px #0002;
+  
+    font-size: 1.2em;
+    background-color: var(--light-purple);
+    color: white;
+  
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  #survey-form button:hover {
+    box-shadow: 0 0 4px 2px #0003;
+    transform: scale(1.1);
+  }
+  

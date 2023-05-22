@@ -1,0 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+    header('location:./src/login/login.php');
+}
+else{
+    header('location:./src/main/home.php');
+}
+?>

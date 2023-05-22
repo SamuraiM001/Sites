@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f8fa;
+}
+
+h1 {
+    color: #1da1f2;
+    text-align: center;
+}
+
+form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input[type="text"], textarea {
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+input[type="submit"] {
+    margin-top: 10px;
+    background-color: #1da1f2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0c8ed9;
+}
+
+#tweets-container {
+    margin-top: 20px;
+}
+
+.tweet {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.tweet__username {
+    font-weight: bold;
+    color: #1da1f2;
+    margin-bottom: 5px;
+}
+
+.tweet__text {
+    margin-bottom: 10px;
+}
+
+.tweet__likes {
+    color: #6b7f93;
+    font-size: 14px;
+}
+
+.tweet__icon {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #6b7f93;
+    cursor: pointer;
+}
+
+.tweet__icons {
+    display: flex;
+    align-items: center;
+}
+
+.tweet__delete-icon {
+    margin-left: auto;
+}
+
+.tweet__icons i:hover {
+    color: #1da1f2;
+}
+
+.tweet__likes-icon:before {
+    content: "\2661";
+}
+
+.tweet__liked-icon:before {
+    content: "\2665";
+    color: #e0245e;
+}

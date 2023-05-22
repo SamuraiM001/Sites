@@ -1,0 +1,74 @@
+.container{
+    display: grid;
+  grid-template-columns: repeat(auto-fit,300px);
+  grid-gap: 50px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+body{
+    background-color: rgb(41, 37, 37);
+    
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: red;
+}
+.card{
+  background-color: #c4b9b9;
+
+}
+header{
+    display: flex;
+    flex: 1;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  .active{
+    background-color: red;
+  }
+  li a{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .firstelem{
+    margin-left: 50px;
+  }
+  
+  li a:hover{
+    background-color: red;
+  }
+  #navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  
