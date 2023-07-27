@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Fetch Example</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #data-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #222;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      margin: 10px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin-bottom: 10px;
+    }
+
+    .buy-button {
+        display: inline-block;
+        background-color: #ff5e3a;
+        color: #fff;
+        padding: 12px 24px; /* Updated padding for a bigger button */
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        font-size: 16px; /* Updated font size */
+      }
+  
+      .buy-button:hover {
+        background-color: #ff774f;
+      }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="contact-info">
+      <div>
+        <i class="fa fa-phone"></i>
+        <span>Telefon Nömrəsi: +994 077 532 82 74 </span>
+      </div>
+      <div>
+        <i class="fa fa-instagram"></i>
+        <span>Instagram: @xeyallararasikecid</span>
+      </div>
+    </div>
+  <h1>Xəyallar Arası Keçid</h1>
+
+  <div id="data-container"></div>
+
+  <script>
+    fetch('http://xeyallararasikecid.pythonanywhere.com/get')
+    .then(response => response.json())
+      .then(data => {
+        const dataContainer = document.getElementById('data-container');
+        data.forEach((item, index) => {
+          // Create a card element
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.style.setProperty('--card-index', index + 1);
+
+          // Create an image element
+          const image = document.createElement('img');
+          image.src = item.image; // Assuming item.image is the URL of the image
+          card.appendChild(image);
+
+          // Create a name element
+          const name = document.createElement('p');
+          name.textContent = `${item.name}`;
+          card.appendChild(name);
+
+          // Create a price element
+          const price = document.createElement('p');
+          price.textContent = `Qiyməti: ${item.price} AZN`;
+          card.appendChild(price);
+
+          // Create a buy button
+         // Create a buy button
+         const buyButton = document.createElement('a');
+         buyButton.href = `buy.html?product=${encodeURIComponent(index+1)}`; // Setting the URL with the product name
+         buyButton.textContent = 'Buy Now';
+         buyButton.className = 'buy-button';
+         card.appendChild(buyButton);
+
+          // Append the card to the container
+          dataContainer.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  </script>
+</body>
+</html>
+
+

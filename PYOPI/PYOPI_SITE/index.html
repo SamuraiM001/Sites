@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create API</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Create API</h2>
+    <form>
+      <div class="form-group">
+        <label for="username">Identification Token:</label>
+        <input type="text" class="form-control" id="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Data:</label>
+        <textarea type="" class="form-control" id="password"></textarea>    
+      </div>
+      <div class="form-group">
+        <label for="authToken">Auth Token:</label>
+        <input type="text" class="form-control" id="authToken">
+        <a type="text" class="form-control" id="info"></a>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="generateAuthToken()">Generate Auth Token</button>
+      <button type="button" class="btn btn-primary" onclick="sendRequest()">Create API</button>
+    </form>
+  </div>
+
+  <script>
+    function generateAuthToken() {
+      var length = 20;
+      var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var token = '';
+
+      for (var i = 0; i < length; i++) {
+        token += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+
+      document.getElementById('authToken').value = token;
+    }
+
+    function sendRequest() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var authToken = document.getElementById('authToken').value;
+    
+      if(authToken != "")
+      var url = 'http://samuraim.pythonanywhere.com/add/' + username + '/' + authToken + '/' +password;
+        else{
+            generateAuthToken();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var authToken = document.getElementById('authToken').value;
+            var url = 'http://samuraim.pythonanywhere.com/add/' + username + '/' + authToken + '/' +password;
+        }
+      // Send the request to the specified URL
+      fetch(url)
+        .then(response => {
+          if (response.ok) {
+            console.log('Request sent successfully.');
+            console.log(response.data);
+            document.getElementById('info').textContent = 'You data With your API is set in http://samuraim.pythonanywhere.com/' + username + '/' + authToken;
+            document.getElementById('info').href = 'http://samuraim.pythonanywhere.com/' + username + '/' + authToken;
+        } else {
+            console.log('Request failed.');
+          }
+        })
+        .catch(error => {
+          console.log('Error occurred:', error);
+        });
+    }
+  </script>
+</body>
+</html>

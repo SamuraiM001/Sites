@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buy Product</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      background-color: #222;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    .image-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+     height: 500px;
+    }
+
+    .product-image {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 4px;
+    }
+
+    .button-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .buy-button {
+      display: inline-block;
+      background-color: #ff5e3a;
+      color: #fff;
+      width: 250px;
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      font-size: 24px;
+    }
+
+    .buy-button:hover {
+      background-color: #ff774f;
+    }body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .input-field {
+      margin-bottom: 10px;
+    }
+
+    .input-field input {
+      padding: 10px;
+      border-radius: 4px;
+      border: none;
+      width: 300px;
+    }
+
+    .submit-button {
+      background-color: #ff5e3a;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      font-size: 16px;
+    }
+
+    .submit-button:hover {
+      background-color: #ff774f;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kitabı Al</h1>
+
+  
+  <div class="card">
+    <div class="image-container">
+      <img id="product-image" class="product-image" src="#" alt="Product Image">
+    </div>
+    <div class="button-container">
+      <div class="form-container">
+        <div class="input-field">
+          <input type="text" id="product-name" placeholder="Adınız" required>
+        </div>
+        <div class="input-field">
+          <input type="text" id="phone-number" placeholder="Telefon Nömrəsi(+994XXXXXXXXXX)" required>
+        </div>
+        <div class="input-field">
+          <input type="text" id="gmail" placeholder="Gmail" >
+        </div>
+        <div class="input-field">
+          <input type="text" id="instagram" placeholder="Instagram Username" >
+        </div>
+        <button class="submit-button" onclick="submitForm()">Almaq</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get the product name from the query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('product');
+
+    // Fetch and display the image
+    const productImage = document.getElementById('product-image');
+    const name = document.getElementById('itname');
+    fetch(`http://xeyallararasikecid.pythonanywhere.com/images/${encodeURIComponent(productName)}`)
+      .then(response => response.blob())
+      .then(blob => {
+        const imageURL = URL.createObjectURL(blob);
+        productImage.src = imageURL;
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+
+      function submitForm() {
+        const productName = document.getElementById('product-name').value;
+        const phoneNumber = document.getElementById('phone-number').value;
+        const gmail = document.getElementById('gmail').value;
+        const instagram = document.getElementById('instagram').value;
+
+        const formData = {
+          name: productName,
+          phone: phoneNumber,
+          email: gmail,
+          instagram: instagram
+        };
+        var regex = /^[a-zA-Z]+$/;
+        // Redirect to the desired page with the necessary data
+        if(phoneNumber.startsWith("+994") && phoneNumber.length == 14 && regex.test(productName)){
+          fetch('https://xeyallararasikecid.pythonanywhere.com/post', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          })
+          .then(response => {
+            if (response.ok) {
+              var message = "Hərşey hazırdır, bizim əməkdaşlarımız sizinlə əlaqə saxlayacaqlar";
+      
+              // Create the h1 element
+              window.location.href = "/madeit.html";
+          }else {
+              // Handle error response
+              console.log('Purchase failed!');
+            }
+          })
+          .catch(error => {
+            console.log('Error:', error);
+          });
+        }
+        else console.log("Sehvler Var")
+        }
+      </script>
+</body>
+</html>
